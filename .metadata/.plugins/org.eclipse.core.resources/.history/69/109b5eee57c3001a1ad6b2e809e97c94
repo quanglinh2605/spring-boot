@@ -1,0 +1,55 @@
+package com.demo.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.demo.entities.Product;
+
+public class ProductModel {
+	public Product find() {
+	 return new Product("p01", "name 1", 20.0, true, 3);
+	}
+	public List<Product> findAll() {
+		List<Product> products = new ArrayList<Product>();
+		products.add( new Product("p01", "name 1", 20.0, true, 3));
+		products.add( new Product("p02", "name 2", 15.0, false, 2));
+		products.add( new Product("p03", "name 3", 10.0, true, 11));
+		return products;
+	}
+	public List<Product> findByStatus(boolean status){
+		List<Product> products = new ArrayList<Product>();
+		for (Product product : findAll()) {
+			if(product.isStatus()==status) {
+				products.add(product);
+			}
+		}
+		return products;
+	}
+	public List<Product> findByPrice(double min, double max){
+		List<Product> products = new ArrayList<Product>();
+		for (Product product : findAll()) {
+			if(product.getPrice()>min && product.getPrice()<max) {
+				products.add(product);
+			}
+		}
+		return products;
+	}
+	public List<Product> findByName(String name){
+		List<Product> products = new ArrayList<Product>();
+		for (Product product : findAll()) {
+			if(product.getName().toLowerCase().contains(name.toLowerCase())) {
+				products.add(product);
+			}
+		}
+		return products;
+	}
+	
+	public double Total() {
+		double result=0;
+		ProductModel productModel = new ProductModel();
+		for (Product product : productModel.findAll()) {
+			result = result + product.getPrice()*product.getQuantity();
+		}
+		return result;
+	}
+}

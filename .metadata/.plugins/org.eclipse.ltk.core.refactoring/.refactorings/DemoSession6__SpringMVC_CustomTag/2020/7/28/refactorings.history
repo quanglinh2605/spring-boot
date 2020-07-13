@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;controllers&apos; to &apos;com.demo.controllers&apos;&#x0D;&#x0A;- Original project: &apos;DemoSession6__SpringMVC_CustomTag&apos;&#x0D;&#x0A;- Original element: &apos;DemoSession6__SpringMVC_CustomTag/src/main/java/controllers&apos;&#x0D;&#x0A;- Renamed element: &apos;DemoSession6__SpringMVC_CustomTag/src/main/java/com.demo.controllers&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;controllers&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;controllers" name="com.demo.controllers" qualified="false" references="true" stamp="1594455351461" textual="false" version="1.0"/>
+</session>
