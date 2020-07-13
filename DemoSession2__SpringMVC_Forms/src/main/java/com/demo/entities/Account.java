@@ -3,7 +3,8 @@ package com.demo.entities;
 import java.util.Date;
 
 public class Account {
-	private String id;
+
+	private int id;
 	private String username;
 	private String password;
 	private String description;
@@ -12,9 +13,8 @@ public class Account {
 	private boolean status;
 	private String[] roles;
 	private String department;
-	private Date birthday;	
+	private Date birthday;
 	private String photo;
-	
 
 	public String getPhoto() {
 		return photo;
@@ -32,11 +32,11 @@ public class Account {
 		this.birthday = birthday;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -103,5 +103,5 @@ public class Account {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
+
 }

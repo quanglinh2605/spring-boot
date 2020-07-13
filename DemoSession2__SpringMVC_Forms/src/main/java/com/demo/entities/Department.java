@@ -1,9 +1,10 @@
 package com.demo.entities;
 
 public class Department {
+
 	private String id;
 	private String name;
-	
+
 	public Department() {
 		super();
 	}
@@ -29,5 +30,5 @@ public class Department {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 }

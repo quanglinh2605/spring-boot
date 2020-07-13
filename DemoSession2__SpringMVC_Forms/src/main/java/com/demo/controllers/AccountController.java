@@ -17,7 +17,9 @@ import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.demo.entities.Account;
-import com.demo.models.*;
+import com.demo.models.CertificateModel;
+import com.demo.models.DepartmentModel;
+import com.demo.models.RoleModel;
 
 @Controller
 @RequestMapping(value = { "", "account" })
@@ -30,52 +32,56 @@ public class AccountController implements ServletContextAware {
 		CertificateModel certificateModel = new CertificateModel();
 		RoleModel roleModel = new RoleModel();
 		DepartmentModel departmentModel = new DepartmentModel();
-		modelMap.put("departments", departmentModel.findAll());
+		modelMap.put("certificates", certificateModel.findAll());
 		modelMap.put("roles", roleModel.findAll());
-		modelMap.put("certificates", certificateModel.findall());
-		Account account = new Account();
+		modelMap.put("departments", departmentModel.findAll());
 
+		Account account = new Account();
+		account.setId(123);
 		account.setUsername("abc");
 		account.setGender("m");
 		account.setCertificate("c2");
-		account.setStatus(true);
-		account.setId("admin");
 		account.setRoles(new String[] { "r1", "r2", "r4" });
 		modelMap.put("account", account);
 		return "account/index";
 	}
 
 	@RequestMapping(value = "save", method = RequestMethod.POST)
-	public String save(@ModelAttribute("account") Account account,@RequestParam("file") MultipartFile file){
+	public String save(@ModelAttribute("account") Account account, 
+			@RequestParam("file") MultipartFile file) {
 		System.out.println("username: " + account.getUsername());
 		System.out.println("password: " + account.getPassword());
-		System.out.println("description: " + account.getDescription());
+		System.out.println("Description: " + account.getDescription());
 		System.out.println("gender: " + account.getGender());
 		System.out.println("status: " + account.isStatus());
-		System.out.println("Roles: ");
+		System.out.println("Roles:");
 		for (String role : account.getRoles()) {
-			System.out.println(role);
+			System.out.println("\t" + role);
 		}
-		System.out.println("certificate: " + account.getCertificate());
-		System.out.println("Department: " + account.getDepartment());
-		System.out.println("id " + account.getId());
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-dd-MM");
+		System.out.println("department: " + account.getDepartment());
+		System.out.println("id: " + account.getId());
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		System.out.println("birthday: " + simpleDateFormat.format(account.getBirthday()));
-		
-		System.out.println("file info");
-		System.out.println("file Name: " + file.getOriginalFilename());
+
+		System.out.println("File Info");
+		System.out.println("File name: " + file.getOriginalFilename());
+		System.out.println("File type: " + file.getContentType());
+		System.out.println("File size(bytes): " + file.getSize());
 		String photo = upload(file);
-		System.out.println("photo: "+ photo);
+		System.out.println("Photo: " + photo);
 		account.setPhoto(photo);
+		
 		return "account/success";
 	}
 
-	private String upload(MultipartFile file) {
+	private String upload(MultipartFile multipartFile) {
 		try {
-			byte[] bytes = file.getBytes();
-			Path path = Paths.get(servletContext.getRealPath("/uploads/images/" + file.getOriginalFilename()));
+			byte[] bytes = multipartFile.getBytes();
+			Path path = Paths.get(servletContext.getRealPath("/uploads/images/" 
+									+ multipartFile.getOriginalFilename()));
 			Files.write(path, bytes);
-			return file.getOriginalFilename();
+			return multipartFile.getOriginalFilename();
 		} catch (Exception e) {
 			return null;
 		}
