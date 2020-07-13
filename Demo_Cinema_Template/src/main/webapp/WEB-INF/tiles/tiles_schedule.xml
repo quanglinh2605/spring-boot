@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="schedule.index1" extends="template">
+		<put-attribute name="content"
+			value="/WEB-INF/views/schedule/index.jsp"></put-attribute>
+	</definition>
+	<definition name="schedule.index2" extends="template">
+		<put-attribute name="content"
+			value="/WEB-INF/views/schedule/index2.jsp"></put-attribute>
+	</definition>
+	
+</tiles-definitions>
